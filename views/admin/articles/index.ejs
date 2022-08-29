@@ -1,0 +1,50 @@
+<%- include ('../../partials/header.ejs') %>
+<%- include ('../../partials/navbar.ejs') %>
+<div class="container">
+    <hr>
+    <div class="d-flex justify-content-between">
+        <h2>Artigos</h2>
+        <a class="btn btn-success" href="/admin/articles/newArticle">Criar novo artigo</a>
+    </div>
+    <hr>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Título</th>
+                <th>Slug</th>
+                <th>Categoria</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% articles.forEach(article => { %>
+            <tr>
+                <th><%= article.id %></th>
+                <th><%= article.title %></th>
+                <th><%= article.slug %></th>
+                <th><%= article.category.title %></th>
+                <th>
+                    <a href="/admin/articles/edit/<%=article.id%> " class="btn btn-warning">Editar</a>
+
+                    <form method="post" action="/articles/delete" class="d-inline"
+                        onsubmit="(confirmDelete(event, this))">
+                        <input type="hidden" name="id" value="<%= article.id %>" />
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                </th>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>
+<%- include ('../../partials/footer.ejs') %>
+<script>
+    function confirmDelete(event, form) {
+        event.preventDefault();
+        var decision = confirm('Voce quer realmente deletar esse artigo?')
+        if (decision) {
+            form.submit();
+        }
+    }
+</script>

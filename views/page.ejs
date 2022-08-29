@@ -1,0 +1,35 @@
+<%- include ('partials/header.ejs') %>
+<%- include ('partials/userNavbar.ejs') %>
+
+<body>
+    <div class="container">
+        <% result.articles.rows.forEach(article => { %>
+        <div class="card">
+            <div class="card-header">
+                <h4><%=article.title %></h4>
+            </div>
+            <div class="card-body" style="text-align:right">
+                <a href="/<%=article.slug%>" class="btn btn-primary" style="text-align:right">Ler Artigo</a>
+            </div>
+        </div>
+        <% }) %>
+        <br>
+        <div class="row">
+            <div class="col col-12">
+                <% if(result.next == false){ %>
+                <a href="/articles/page/<%= result.pagePrevious %>" style="float:left" class="btn btn-info">&#x2B05
+                    Previous</a>
+                <% } else { %>
+                <a href="/" style="float:left" class="btn btn-info">&#x2B05 Previous</a>
+                <% } %>
+                <% if(result.next == true){ %>
+                <a href="/articles/page/<%= result.pageNext %> " style="float:right "
+                    class="btn btn-info">&nbsp&nbspNext &#x27A1&nbsp</a>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<%- include ('partials/footer.ejs') %>

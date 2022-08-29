@@ -1,0 +1,16 @@
+<nav class="navbar bg-dark navbar-expand-sm">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">BlogPress</a>
+
+        <ul class="navbar-nav mr-auto">
+            <% category.forEach(category => { %>
+            <li class="nav-item">
+                <a class="nav-link" href="/<%=category.slug%>"><%= category.title %></a>
+            </li>
+            <% }) %>
+        </ul>
+        <ul class="navbar-nav">
+            <a class="btn btn-primary" href="/login">Login</a>
+        </ul>
+    </div>
+</nav>
